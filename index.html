@@ -170,9 +170,39 @@
       max-width: 448px;
     }
   }
-  #hero-iphone-img.glow {
-    box-shadow: 0 0 40px 10px rgba(36,118,247,0.25), 0 8px 40px 0 rgba(36,118,247,0.12);
-    transition: box-shadow 1.2s cubic-bezier(.4,0,.2,1);
+  #hero-iphone-img.impact-3d {
+    animation: hero3dIn 1.2s cubic-bezier(.4,0,.2,1) forwards;
+    transform: perspective(900px) rotateY(-18deg) scale(1.12);
+    opacity: 1;
+  }
+  @keyframes hero3dIn {
+    0% {
+      opacity: 0;
+      transform: perspective(900px) rotateY(40deg) scale(0.85) translateY(60px);
+      filter: blur(4px);
+    }
+    60% {
+      opacity: 1;
+      transform: perspective(900px) rotateY(-12deg) scale(1.14) translateY(-8px);
+      filter: blur(0.5px);
+    }
+    100% {
+      opacity: 1;
+      transform: perspective(900px) rotateY(-18deg) scale(1.12) translateY(0);
+      filter: blur(0);
+    }
+  }
+  #hero-iphone-img.glow-pulse {
+    animation: heroGlowPulse 2.2s ease-in-out infinite alternate;
+    box-shadow: 0 0 60px 10px rgba(36,118,247,0.22), 0 8px 40px 0 rgba(36,118,247,0.10);
+  }
+  @keyframes heroGlowPulse {
+    0% {
+      box-shadow: 0 0 40px 8px rgba(36,118,247,0.18), 0 8px 40px 0 rgba(36,118,247,0.10);
+    }
+    100% {
+      box-shadow: 0 0 80px 18px rgba(36,118,247,0.32), 0 8px 60px 0 rgba(36,118,247,0.18);
+    }
   }
 </style>
     </div>
@@ -313,7 +343,6 @@
 
         <!-- Depoimentos Section -->
         <section id="depoimentos" class="py-10 bg-[#f6f8fa] flex justify-center items-center">
-
             <div class="container mx-auto px-4">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl font-bold text-blue-800 mb-4">O que dizem as famílias</h2>
@@ -347,26 +376,13 @@
                                     
                                 </div>
                             </div>
-                        </div>
-                        
-                    
-                        
-                                    
-                                    
-                                    
-                                    
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        
-                    
-                        
-                                    
-                                    
-                                    
             </div>
+            <!-- Pergunta 1 -->
+            
         </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-16 bg-white">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl font-bold text-blue-800 mb-4">Perguntas Frequentes</h2>
@@ -376,7 +392,7 @@
                     <div class="space-y-4">
                         <!-- Pergunta 1 -->
                         <div class="bg-[#f6f8fa] rounded-lg shadow-md overflow-hidden">
-                            <button class="faq-button w-full px-6 py-4 text-left font-semibold text-blue-800 hover:bg-[#f1f8ff] transition-colors flex justify-between items-center">
+                            <button class="faq-button w-full px-6 py-4 text-left font-semibold text-blue-800 hover:bg-[#f1f8ff] transition-colors flex justify-between items-center" role="button" aria-expanded="false">
                                 <span>Como o CuidadoMaisFamilia pode ajudar minha família?</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#0366d6] transform transition-transform faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -388,7 +404,7 @@
                         </div>
                         <!-- Pergunta 2 -->
                         <div class="bg-[#f6f8fa] rounded-lg shadow-md overflow-hidden">
-                            <button class="faq-button w-full px-6 py-4 text-left font-semibold text-blue-800 hover:bg-[#f1f8ff] transition-colors flex justify-between items-center">
+                            <button class="faq-button w-full px-6 py-4 text-left font-semibold text-blue-800 hover:bg-[#f1f8ff] transition-colors flex justify-between items-center" role="button" aria-expanded="false">
                                 <span>O aplicativo é gratuito?</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#0366d6] transform transition-transform faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -400,7 +416,7 @@
                         </div>
                         <!-- Pergunta 3 -->
                         <div class="bg-[#f6f8fa] rounded-lg shadow-md overflow-hidden">
-                            <button class="faq-button w-full px-6 py-4 text-left font-semibold text-blue-800 hover:bg-[#f1f8ff] transition-colors flex justify-between items-center">
+                            <button class="faq-button w-full px-6 py-4 text-left font-semibold text-blue-800 hover:bg-[#f1f8ff] transition-colors flex justify-between items-center" role="button" aria-expanded="false">
                                 <span>Quais profissionais de saúde estão disponíveis no aplicativo?</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#0366d6] transform transition-transform faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -412,7 +428,7 @@
                         </div>
                         <!-- Pergunta 4 -->
                         <div class="bg-[#f6f8fa] rounded-lg shadow-md overflow-hidden">
-                            <button class="faq-button w-full px-6 py-4 text-left font-semibold text-blue-800 hover:bg-[#f1f8ff] transition-colors flex justify-between items-center">
+                            <button class="faq-button w-full px-6 py-4 text-left font-semibold text-blue-800 hover:bg-[#f1f8ff] transition-colors flex justify-between items-center" role="button" aria-expanded="false">
                                 <span>Como posso acessar o suporte emocional oferecido?</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#0366d6] transform transition-transform faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -424,7 +440,7 @@
                         </div>
                         <!-- Pergunta 5 -->
                         <div class="bg-[#f6f8fa] rounded-lg shadow-md overflow-hidden">
-                            <button class="faq-button w-full px-6 py-4 text-left font-semibold text-blue-800 hover:bg-[#f1f8ff] transition-colors flex justify-between items-center">
+                            <button class="faq-button w-full px-6 py-4 text-left font-semibold text-blue-800 hover:bg-[#f1f8ff] transition-colors flex justify-between items-center" role="button" aria-expanded="false">
                                 <span>O aplicativo funciona offline?</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#0366d6] transform transition-transform faq-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -601,15 +617,15 @@
             button.addEventListener('click', () => {
                 const answer = button.nextElementSibling;
                 const icon = button.querySelector('.faq-icon');
-                
                 // Toggle answer visibility
                 answer.classList.toggle('hidden');
-                
-                // Rotate icon when expanded
-                if (answer.classList.contains('hidden')) {
-                    icon.classList.remove('rotate-180');
-                } else {
-                    icon.classList.add('rotate-180');
+                // Corrige rotação do ícone (compatível com todos browsers)
+                if (icon) {
+                    if (answer.classList.contains('hidden')) {
+                        icon.style.transform = '';
+                    } else {
+                        icon.style.transform = 'rotate(180deg)';
+                    }
                 }
             });
         });

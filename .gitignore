@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.env
+*.log
+*.tmp
+.DS_Store
+*.local
+.cache/
+*.swp
+*.swo
+*.zip
+*.tar.gz
+# IDE
+.vscode/
+.idea/
+# OS
+Thumbs.db

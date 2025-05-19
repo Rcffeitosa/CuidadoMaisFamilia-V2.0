@@ -40,9 +40,14 @@ function renderBeneficios() {
 
 document.addEventListener('DOMContentLoaded', function () {
   renderBeneficios();
-  // --- Carrossel de Depoimentos ---
-// Modal Popup para Saiba Mais
-window.addEventListener('DOMContentLoaded', function () {
+  renderDepoimentosCarousel();
+  // Carrossel de depoimentos: listeners de navegação
+  const nextBtn = document.getElementById('depoimentos-next');
+  const prevBtn = document.getElementById('depoimentos-prev');
+  if (nextBtn) nextBtn.addEventListener('click', nextDepoimento);
+  if (prevBtn) prevBtn.addEventListener('click', prevDepoimento);
+
+  // Modal Popup para Saiba Mais
   const saibaMaisBtn = document.getElementById('saibaMaisBtn');
   const popup = document.getElementById('popup-modal');
   const popupContent = document.getElementById('popup-content');
@@ -75,28 +80,24 @@ window.addEventListener('DOMContentLoaded', function () {
   }
 });
 const depoimentos = [
-  {
-    nome: 'Joana Lima',
-    foto: 'assets/people/p1.png',
-    texto: 'O CuidadoMaisFamilia transformou nossa rotina. Consigo organizar as consultas do meu filho e ter acesso a informações confiáveis. O suporte emocional dos grupos me ajudou a não me sentir sozinha nessa jornada.',
-    estrelas: 5
-  },
+  
   {
     nome: 'Paula Ferreira',
     foto: 'assets/people/p3.png',
-    texto: 'Como mãe de uma criança com doença degenerativa, o CuidadoMaisFamilia me proporcionou um apoio emocional inestimável. As consultas online com especialistas e os grupos de apoio me ajudaram a lidar com os desafios diários.',
+    texto: 'As consultas online com especialistas e os grupos de apoio me ajudaram a lidar com os desafios diários.',
+    estrelas: 5
+  },
+ 
+  {
+    nome: 'Ricardo Martins',
+    foto: 'assets/people/p4.png',
+    texto: 'O aplicativo me ajudou a encontrar grupos de apoio e informações confiáveis. Recomendo a todos os pais!',
     estrelas: 5
   },
   {
     nome: 'Patrícia Oliveira',
     foto: 'assets/people/p2.png',
-    texto: 'A biblioteca de recursos do CuidadoMaisFamilia é incrível! Encontro artigos específicos sobre a condição do meu filho e os grupos de apoio me conectaram com outras mães que entendem exatamente o que estou passando.',
-    estrelas: 5
-  },
-  {
-    nome: 'Ricardo Martins',
-    foto: 'assets/people/p4.png',
-    texto: 'O aplicativo me ajudou a encontrar grupos de apoio e informações confiáveis. Recomendo a todos os pais!',
+    texto: 'Apoio emocional dos grupos me ajudou a não me sentir sozinha nessa jornada.',
     estrelas: 5
   },
   {
@@ -108,9 +109,15 @@ const depoimentos = [
   {
     nome: 'Helena Dias',
     foto: 'assets/people/p6.png',
-    texto: 'Os lembretes e o suporte do app facilitam muito o dia a dia da minha família.',
+    texto: 'facilidade para encontra otimos profissionais e informações confiáveis.', 
     estrelas: 5
-  }
+  },
+  {
+    nome: 'Joana Lima',
+    foto: 'assets/people/p1.png',
+    texto: 'Organização da rotina e lembretes do app facilitam muito o dia a dia da minha família.',
+    estrelas: 5
+  },
 ];
 
 let depoimentoIndex = 0;
@@ -160,7 +167,6 @@ function renderDepoimentosCarousel() {
   slides.style.alignItems = 'stretch';
 }
 
-
 function nextDepoimento() {
   depoimentoIndex = (depoimentoIndex + 1) % depoimentos.length;
   renderDepoimentosCarousel();
@@ -169,10 +175,49 @@ function prevDepoimento() {
   depoimentoIndex = (depoimentoIndex - 1 + depoimentos.length) % depoimentos.length;
   renderDepoimentosCarousel();
 }
-window.addEventListener('DOMContentLoaded', () => {
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Renderiza benefícios
+  renderBeneficios();
+  // Renderiza depoimentos/carrossel
   renderDepoimentosCarousel();
-  document.getElementById('depoimentos-next').addEventListener('click', nextDepoimento);
-  document.getElementById('depoimentos-prev').addEventListener('click', prevDepoimento);
+  // Carrossel de depoimentos: listeners de navegação
+  const nextBtn = document.getElementById('depoimentos-next');
+  const prevBtn = document.getElementById('depoimentos-prev');
+  if (nextBtn) nextBtn.addEventListener('click', nextDepoimento);
+  if (prevBtn) prevBtn.addEventListener('click', prevDepoimento);
+
+  // Modal Popup para Saiba Mais
+  const saibaMaisBtn = document.getElementById('saibaMaisBtn');
+  const popup = document.getElementById('popup-modal');
+  const popupContent = document.getElementById('popup-content');
+  const closePopup = document.getElementById('close-popup');
+
+  if (saibaMaisBtn && popup && popupContent && closePopup) {
+    saibaMaisBtn.addEventListener('click', function(e) {
+      e.preventDefault(); // Cancela o scroll automático
+      popup.classList.remove('opacity-0', 'pointer-events-none');
+      popup.classList.add('opacity-100');
+    });
+    closePopup.addEventListener('click', function() {
+      popup.classList.remove('opacity-100');
+      popup.classList.add('opacity-0', 'pointer-events-none');
+    });
+    // Fecha ao clicar fora do conteúdo
+    popup.addEventListener('click', function(e) {
+      if (e.target === popup) {
+        popup.classList.remove('opacity-100');
+        popup.classList.add('opacity-0', 'pointer-events-none');
+      }
+    });
+    // Fecha com ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && popup.classList.contains('opacity-100')) {
+        popup.classList.remove('opacity-100');
+        popup.classList.add('opacity-0', 'pointer-events-none');
+      }
+    });
+  }
 
   // Hero buttons functionality
   const comeceAgoraBtn = document.getElementById('comeceAgoraBtn');
@@ -183,9 +228,34 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const saibaMaisBtn = document.querySelector('a[href="#funcionalidades"]');
-  if (saibaMaisBtn) {
-    saibaMaisBtn.addEventListener('click', function(e) {
+  // Scroll suave para todos os links FAQ
+  document.querySelectorAll('a[href="#faq"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      // Busca a seção FAQ pelo id
+      let target = document.getElementById('faq');
+      // Fallback: procura por section com id FAQ ou h2 com texto correspondente
+      if (!target) {
+        target = document.querySelector('section#faq');
+      }
+      if (!target) {
+        target = Array.from(document.querySelectorAll('h2')).find(h2 => h2.textContent.trim().toLowerCase().includes('perguntas frequentes'));
+      }
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Opcional: dar foco visual
+        if (target.tabIndex === -1) target.tabIndex = 0;
+        target.focus({ preventScroll: true });
+      } else {
+        alert('Seção FAQ não encontrada!');
+      }
+    });
+  });
+
+  // Scroll suave para "saiba mais"
+  const saibaMaisLink = document.querySelector('a[href="#funcionalidades"]');
+  if (saibaMaisLink) {
+    saibaMaisLink.addEventListener('click', function(e) {
       e.preventDefault();
       const target = document.getElementById('funcionalidades');
       if (target) {
@@ -196,20 +266,32 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // FAQ accordion
   document.querySelectorAll('.faq-button').forEach((btn) => {
-    btn.addEventListener('click', function () {
-      const answer = this.parentElement.querySelector('.faq-answer');
-      if (answer.classList.contains('hidden')) {
-        document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
-        answer.classList.remove('hidden');
-      } else {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      // Busca o .faq-answer correto mesmo se houver espaçamento, comentário ou outro nó entre eles
+      // Busca o bloco de pergunta mais próximo (garante robustez mesmo com estrutura alterada)
+      const container = this.closest('.bg-[#f6f8fa]');
+      const answer = container ? container.querySelector('.faq-answer') : null;
+      const icon = this.querySelector('.faq-icon');
+      if (!answer) return;
+      const isOpen = !answer.classList.contains('hidden');
+      if (isOpen) {
         answer.classList.add('hidden');
+        if (icon) icon.style.transform = '';
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+        document.querySelectorAll('.faq-icon').forEach(i => i.style.transform = '');
+        document.querySelectorAll('.faq-button').forEach(b => b.setAttribute('aria-expanded', 'false'));
+        answer.classList.remove('hidden');
+        if (icon) icon.style.transform = 'rotate(180deg)';
+        btn.setAttribute('aria-expanded', 'true');
       }
     });
   });
 
+  // Carrossel autoplay
   window.addEventListener('resize', renderDepoimentosCarousel);
-
-  // Autoplay suave do carrossel
   const carousel = document.getElementById('carousel-depoimentos');
   function startAutoplay() {
     if (depoimentoAutoplay) clearInterval(depoimentoAutoplay);
@@ -227,22 +309,3 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Modal de informação para o botão 'Saiba mais'
-  const saibaMaisBtn = document.getElementById('saibaMaisBtn');
-  const modal = document.getElementById('infoModal');
-  const closeModalBtn = document.getElementById('closeModalBtn');
-  if (saibaMaisBtn && modal && closeModalBtn) {
-    saibaMaisBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-      modal.classList.remove('hidden');
-    });
-    closeModalBtn.addEventListener('click', function () {
-      modal.classList.add('hidden');
-    });
-    modal.addEventListener('click', function (e) {
-      if (e.target === modal) {
-        modal.classList.add('hidden');
-      }
-    });
-  }
-});
