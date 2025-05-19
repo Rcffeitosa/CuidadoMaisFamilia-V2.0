@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smartphone Mockup</title>
+    <style>
+        .smartphone-container {
+            position: relative;
+            width: 500px;
+            height: 600px;
+            margin: 0 auto;
+        }
+        .smartphone-mockup {
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 600"><rect x="50" y="20" width="400" height="560" rx="40" fill="black"/><rect x="80" y="50" width="340" height="500" rx="5" fill="white"/><circle cx="250" cy="580" r="20" fill="white" opacity="0.3"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .app-screenshot {
+            position: absolute;
+            top: 50px;
+            left: 80px;
+            width: 340px;
+            height: 500px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+        }
+        .app-header {
+            background-color: #3B82F6;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .app-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .doctor-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .doctor-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #3B82F6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+        }
+        .doctor-info {
+            flex-grow: 1;
+        }
+        .doctor-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .doctor-specialty {
+            color: #3B82F6;
+            font-size: 0.9em;
+        }
+        .app-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .app-subtitle {
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+        .app-navbar {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.8em;
+            color: #6c757d;
+        }
+        .nav-item.active {
+            color: #3B82F6;
+        }
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 5px;
+            background-color: currentColor;
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+        }
+        .icon-users {
+            mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm-7 7a7 7 0 0 1 14 0H5z"/></svg>');
+        }
+    </style>
+</head>
+<body>
+    <div class="smartphone-container">
+        <div class="smartphone-mockup" style="background-image: url('assets/home/smartphone-app.jpg')">
+            <div class="app-screenshot">
+                <div class="app-header">
+                    <img src="assets/home/iphone.png" alt="Logo CuidadoMaisFamilia" style="height: 40px; background-color: white; border-radius: 5px; padding: 5px;">
+                </div>
+                <div class="app-content">
+                    <div>
+                        <div class="app-title">Profissionais</div>
+                        <div class="app-subtitle">Encontre os melhores profissionais para cuidar de sua família</div>
+                    </div>
+                    <div class="doctor-card">
+                        <div class="doctor-avatar" style="background-image: url('assets/home/medico_criança.png')">W</div>
+                        <div class="doctor-info">
+                            <div class="doctor-name">Wagner</div>
+                            <div class="doctor-specialty">Pediatria • Cardiologia</div>
+                            <div style="font-size: 0.8em; color: #6c757d;">Rua Antônio Fernandes</div>
+                        </div>
+                    </div>
+                    <div class="doctor-card">
+                        <div class="doctor-avatar" style="background-image: url('assets/home/medico_criança.png')">G</div>
+                        <div class="doctor-info">
+                            <div class="doctor-name">Geraldo</div>
+                            <div class="doctor-specialty">Cardiologia</div>
+                            <div style="font-size: 0.8em; color: #6c757d;">Rua Senador Vergueiro</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="app-navbar">
+                    <div class="nav-item active">
+                        <div class="nav-icon icon-users"></div>
+                        <span>Profissionais</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Comunidades</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Blogs</span>
+                    </div>
+                    <div class="nav-item">
+                        <div class="nav-icon"></div>
+                        <span>Perfil</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
